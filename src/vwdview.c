@@ -21,8 +21,6 @@ void vwdview_init(Vwdview* vv) {
 	vv->wew.data = (void*)vv;
 	vv->wew.event = vwdview_event;
 	wlezwrap_init(&vv->wew);
-	vv->wewmv.event = vwdview_mview_event;
-	vv->wewmv.data = (void*)vv;
 	camcon2_init(&vv->camcon);
 	vv->camcon.k = 1.0;
 	vv->resize = true;

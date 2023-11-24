@@ -5,18 +5,27 @@
 typedef struct Vwdview Vwdview;
 
 #include "../../camcon2/include/camcon2.h"
-#include "../../wlezwrap/include/mview.h"
 #include "../../wlezwrap/include/wlezwrap.h"
+#include "../../vwdlayer/include/ifdraw.h"
 
+// input state
+// 0 null
+// 1 mclick: pan
+// 2 shift>mclick: rotate
+// 3 ctrl>mclick: zoom
+// 4 lclick: draw
+// 5 shift>lclick: size
 struct Vwdview {
 	Wlezwrap wew;
-	WlezwrapMview wewmv;
+	uint32_t input_state;
+	float pps[3];
+	VwdlayerIfdraw ifdraw;
 	bool quit;
 	bool resize;
 	void *data;
-	void (*event)(Vwdview* vv, uint8_t type, WlezwrapEvent *event);
 	Camcon2 camcon;
 	uint32_t window_size[2];
+	int32_t offset[2]; // of current focus, for c2l mapping
 };
 
 void vwdview_build_camera(Vwdview *vv, mat4 view);
