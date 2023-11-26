@@ -1,4 +1,5 @@
 #include <cglm/cglm.h>
+#include <math.h>
 #include <stdbool.h>
 #include <stdint.h>
 #include <string.h>
@@ -7,8 +8,10 @@
 #include "../include/input.h"
 #include "../include/vwdview.h"
 
+#define M_PI 3.1415926535f
+
 static float angle_norm(float angle) {
-	static const float PI = (float)M_PI;
+	static const float PI = M_PI;
 	while (angle >= PI) {
 		angle -= 2.0f * PI;
 	}

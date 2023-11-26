@@ -1,4 +1,5 @@
 #include <cglm/cglm.h>
+#include <wayland-client.h>
 
 #include "../include/vwdview.h"
 #include "../include/input.h"
