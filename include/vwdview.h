@@ -1,4 +1,5 @@
-#pragma once
+#ifndef INCLUDEGUARD_VWDVIEW_VWDVIEWH
+#define INCLUDEGUARD_VWDVIEW_VWDVIEWH
 
 #include <cglm/cglm.h>
 
@@ -33,3 +34,5 @@ void vwdview_s2w(Vwdview *vv, vec2 s, vec2 w);
 void vwdview_init(Vwdview* vv);
 void vwdview_deinit(Vwdview* vv);
 bool vwdview_flush_events(Vwdview* vv);
+
+#endif
