@@ -1,5 +1,5 @@
-#ifndef INCLUDEGUARD_VWDVIEW_VWDVIEWH
-#define INCLUDEGUARD_VWDVIEW_VWDVIEWH
+#ifndef INCLUDEGUARD_VWDVIEW
+#define INCLUDEGUARD_VWDVIEW
 
 #include <cglm/cglm.h>
 
@@ -7,7 +7,7 @@ typedef struct Vwdview Vwdview;
 
 #include "../../camcon2/include/camcon2.h"
 #include "../../wlezwrap/include/wlezwrap.h"
-#include "../../vwdlayer/include/ifdraw.h"
+#include "../../vwdlayer/include/vwdlayer.h"
 
 // input state
 // 0 null

@@ -1,8 +1,5 @@
 #include <cglm/cglm.h>
 #include <math.h>
-#include <stdbool.h>
-#include <stdint.h>
-#include <string.h>
 
 #include "../../wlezwrap/include/wlezwrap.h"
 #include "../include/input.h"
