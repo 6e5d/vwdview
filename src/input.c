@@ -2,7 +2,6 @@
 #include <math.h>
 
 #include "../../wlezwrap/include/wlezwrap.h"
-#include "../include/input.h"
 #include "../include/vwdview.h"
 
 #define M_PI 3.1415926535f
@@ -53,6 +52,7 @@ static void vwdview_mouse_click(Vwdview* vv, uint8_t id, bool updown) {
 		} else if (id == WLEZWRAP_LCLICK) {
 			vv->input_state = 4;
 		}
+		vv->skip = true;
 	} else {
 		if (id == WLEZWRAP_LCLICK) {
 			vv->ifdraw.end(vv->data);
@@ -92,7 +92,9 @@ void vwdview_event(void* data, uint8_t type, WlezwrapEvent *e) {
 		f_resize(vv, e->resize[0], e->resize[1]);
 		break;
 	case 2:
-		if (vv->input_state == 1) {
+		if (vv->skip) {
+			vv->skip = false;
+		} else if (vv->input_state == 1) {
 			vwdview_view_pan(vv, e);
 		} else if (vv->input_state == 2) {
 			vwdview_view_rotate(vv, e);

@@ -20,6 +20,7 @@ struct Vwdview {
 	Wlezwrap wew;
 	uint32_t input_state;
 	float pps[3];
+	bool skip; // first event after press
 	VwdlayerIfdraw ifdraw;
 	bool quit;
 	bool resize;
@@ -34,5 +35,7 @@ void vwdview_s2w(Vwdview *vv, vec2 s, vec2 w);
 void vwdview_init(Vwdview* vv);
 void vwdview_deinit(Vwdview* vv);
 bool vwdview_flush_events(Vwdview* vv);
+
+void vwdview_event(void* data, uint8_t type, WlezwrapEvent *e);
 
 #endif

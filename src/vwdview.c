@@ -2,7 +2,6 @@
 #include <wayland-client.h>
 
 #include "../include/vwdview.h"
-#include "../include/input.h"
 
 void vwdview_s2w(Vwdview *vv, vec2 s, vec2 w) {
 	vec4 ss = {
