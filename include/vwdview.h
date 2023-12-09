@@ -17,14 +17,20 @@ typedef struct Vwdview Vwdview;
 // 4 lclick: draw
 // 5 shift>lclick: size
 struct Vwdview {
+	void (*cb_submit)(void*);
+	void (*cb_undo)(void*);
+	void *data;
+
 	Wlezwrap wew;
 	uint32_t input_state;
 	float pps[3];
 	bool skip; // first event after press
 	VwdlayerIfdraw ifdraw;
+	// only 1 undo/redo op allowed in 1 frame
+	// undo=1, redo=-1
 	bool quit;
 	bool resize;
-	void *data;
+	void *brush;
 	Camcon2 camcon;
 	uint32_t window_size[2];
 	int32_t offset[2]; // of current focus, for c2l mapping

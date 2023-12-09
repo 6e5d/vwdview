@@ -23,6 +23,8 @@ static void f_key(Vwdview *iv, uint8_t key, bool pressed) {
 		iv->camcon.k *= 1.33f;
 	} else if (key == 'o') {
 		iv->camcon.k /= 1.33f;
+	} else if (key == 'z') {
+		iv->cb_undo(iv->data);
 	} else {
 		return;
 	}
@@ -41,21 +43,20 @@ static void f_quit(Vwdview *vv) {
 static void vwdview_mouse_click(Vwdview* vv, uint8_t id, bool updown) {
 	bool *keystate = vv->wew.keystate;
 	if (updown) {
-		if (id == WLEZWRAP_MCLICK) {
-			if (keystate[WLEZWRAP_LSHIFT]) {
-				vv->input_state = 2;
-			} else if (keystate[WLEZWRAP_LCTRL]) {
-				vv->input_state = 3;
-			} else {
-				vv->input_state = 1;
-			}
+		if (keystate[WLEZWRAP_LSHIFT]) {
+			vv->input_state = 2;
+		} else if (keystate[WLEZWRAP_LCTRL]) {
+			vv->input_state = 3;
+		} else if (keystate[' '] || id == WLEZWRAP_MCLICK) {
+			vv->input_state = 1;
 		} else if (id == WLEZWRAP_LCLICK) {
 			vv->input_state = 4;
 		}
 		vv->skip = true;
 	} else {
 		if (id == WLEZWRAP_LCLICK) {
-			vv->ifdraw.end(vv->data);
+			vv->ifdraw.end(vv->brush);
+			vv->cb_submit(vv->data);
 		}
 		vv->input_state = 0;
 	}
@@ -110,7 +111,7 @@ void vwdview_event(void* data, uint8_t type, WlezwrapEvent *e) {
 			wpos[1] -= (float)vv->offset[1];
 			wpps[0] -= (float)vv->offset[0];
 			wpps[1] -= (float)vv->offset[1];
-			vv->ifdraw.motion(vv->data, wpos, wpps);
+			vv->ifdraw.motion(vv->brush, wpos, wpps);
 		}
 		memcpy(vv->pps, e->motion, 3 * sizeof(float));
 		break;
