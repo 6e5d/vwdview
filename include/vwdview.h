@@ -18,7 +18,7 @@ typedef struct Vwdview Vwdview;
 // 5 shift>lclick: size
 struct Vwdview {
 	void (*cb_submit)(void*);
-	void (*cb_undo)(void*);
+	void (*cb_undo)(void*, bool);
 	void *data;
 
 	Wlezwrap wew;

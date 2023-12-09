@@ -24,7 +24,11 @@ static void f_key(Vwdview *iv, uint8_t key, bool pressed) {
 	} else if (key == 'o') {
 		iv->camcon.k /= 1.33f;
 	} else if (key == 'z') {
-		iv->cb_undo(iv->data);
+		iv->cb_undo(iv->data, true);
+	} else if (key == 'y') {
+		iv->cb_undo(iv->data, false);
+	} else if (key == 'r') {
+		iv->camcon.theta = 0.0f;
 	} else {
 		return;
 	}
