@@ -30,7 +30,7 @@ static void f_key(Vwdview *iv, uint8_t key, bool pressed) {
 	} else if (key == 'r') {
 		iv->camcon.theta = 0.0f;
 	} else {
-		return;
+		iv->cb_key(iv->data, key);
 	}
 }
 
