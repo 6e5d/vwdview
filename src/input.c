@@ -56,6 +56,8 @@ static void vwdview_mouse_click(Vwdview* vv, uint8_t id, bool updown) {
 			vv->input_state = 3;
 		} else if (keystate[' '] || id == WLEZWRAP_MCLICK) {
 			vv->input_state = 1;
+		} else if (keystate[WLEZWRAP_LALT]) {
+			vv->input_state = 5;
 		} else if (id == WLEZWRAP_LCLICK) {
 			vv->input_state = 4;
 		}
@@ -119,6 +121,9 @@ void vwdview_event(void* data, uint8_t type, WlezwrapEvent *e) {
 			wpps[0] -= (float)vv->offset[0];
 			wpps[1] -= (float)vv->offset[1];
 			vv->ifdraw.motion(vv->brush, wpos, wpps);
+		} else if (vv->input_state == 5) {
+			float dx = e->motion[0] - vv->pps[0];
+			vv->ifdraw.primary(vv->brush, dx);
 		}
 		memcpy(vv->pps, e->motion, 3 * sizeof(float));
 		break;
