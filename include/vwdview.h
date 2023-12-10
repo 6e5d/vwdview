@@ -19,7 +19,7 @@ typedef struct Vwdview Vwdview;
 struct Vwdview {
 	void (*cb_submit)(void*);
 	void (*cb_undo)(void*, bool);
-	void (*cb_key)(void*, uint8_t);
+	void (*cb_key)(void*, uint8_t, bool);
 	void *data;
 
 	Wlezwrap wew;

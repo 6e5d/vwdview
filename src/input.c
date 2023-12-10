@@ -18,7 +18,10 @@ static float angle_norm(float angle) {
 }
 
 static void f_key(Vwdview *iv, uint8_t key, bool pressed) {
-	if (!pressed) { return; }
+	if (!pressed) {
+		iv->cb_key(iv->data, key, pressed);
+		return;
+	}
 	if (key == 'i') {
 		iv->camcon.k *= 1.33f;
 	} else if (key == 'o') {
@@ -30,7 +33,7 @@ static void f_key(Vwdview *iv, uint8_t key, bool pressed) {
 	} else if (key == 'r') {
 		iv->camcon.theta = 0.0f;
 	} else {
-		iv->cb_key(iv->data, key);
+		iv->cb_key(iv->data, key, pressed);
 	}
 }
 

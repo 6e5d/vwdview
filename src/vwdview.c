@@ -19,6 +19,7 @@ void vwdview_s2w(Vwdview *vv, vec2 s, vec2 w) {
 void vwdview_init(Vwdview* vv) {
 	wlezwrap_confgen(&vv->wew);
 	vv->wew.data = (void*)vv;
+	vv->wew.hide_cursor = true;
 	vv->wew.event = vwdview_event;
 	wlezwrap_init(&vv->wew);
 	camcon2_init(&vv->camcon);
