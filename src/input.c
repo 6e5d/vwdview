@@ -32,6 +32,9 @@ static void f_key(Vwdview *iv, uint8_t key, bool pressed) {
 		iv->cb_undo(iv->data, false);
 	} else if (key == 'r') {
 		iv->camcon.theta = 0.0f;
+		iv->camcon.mirror = false;
+	} else if (key == 'm') {
+		iv->camcon.mirror = !iv->camcon.mirror;
 	} else {
 		iv->cb_key(iv->data, key, pressed);
 	}
@@ -85,7 +88,7 @@ static void vwdview_view_rotate(Vwdview* vv, WlezwrapEvent *e) {
 	float t0 = atan2f(vv->pps[1] - cy, vv->pps[0] - cx);
 	float t1 = atan2f(e->motion[1] - cy, e->motion[0] - cx);
 	t1 = angle_norm(t1 - t0);
-	vv->camcon.theta += (float)t1;
+	camcon2_rotate_view(&vv->camcon, (float)t1);
 }
 
 static void vwdview_view_zoom(Vwdview* vv, WlezwrapEvent *e) {
