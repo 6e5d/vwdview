@@ -10,7 +10,7 @@ void vwdview_s2w(Vwdview *vv, vec2 s, vec2 w) {
 		0.0f, 1.0f};
 	vec4 ww;
 	mat4 t;
-	camcon2_build(&vv->camcon, t);
+	camcon2(build)(&vv->camcon, t);
 	glm_mat4_inv(t, t);
 	glm_mat4_mulv(t, ss, ww);
 	w[0] = ww[0] / ww[3]; w[1] = ww[1] / ww[3];
@@ -22,7 +22,7 @@ void vwdview_init(Vwdview* vv) {
 	vv->wew.hide_cursor = true;
 	vv->wew.event = vwdview_event;
 	wlezwrap_init(&vv->wew);
-	camcon2_init(&vv->camcon);
+	camcon2(init)(&vv->camcon);
 	vv->camcon.k = 1.0;
 	vv->resize = true;
 	// just prevent initialize with 0 size
@@ -49,5 +49,5 @@ void vwdview_deinit(Vwdview* vv) {
 }
 
 void vwdview_build_camera(Vwdview *vv, mat4 view) {
-	camcon2_build(&vv->camcon, view);
+	camcon2(build)(&vv->camcon, view);
 }

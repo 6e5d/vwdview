@@ -5,7 +5,7 @@
 
 typedef struct Vwdview Vwdview;
 
-#include "../../camcon2/include/camcon2.h"
+#include "../../camcon2/build/camcon2.h"
 #include "../../wlezwrap/include/wlezwrap.h"
 #include "../../vwdlayer/include/vwdlayer.h"
 
@@ -32,7 +32,7 @@ struct Vwdview {
 	bool quit;
 	bool resize;
 	void *brush;
-	Camcon2 camcon;
+	Com_6e5dCamcon2 camcon;
 	uint32_t window_size[2];
 	int32_t offset[2]; // of current focus, for c2l mapping
 };

@@ -88,7 +88,7 @@ static void vwdview_view_rotate(Vwdview* vv, WlezwrapEvent *e) {
 	float t0 = atan2f(vv->pps[1] - cy, vv->pps[0] - cx);
 	float t1 = atan2f(e->motion[1] - cy, e->motion[0] - cx);
 	t1 = angle_norm(t1 - t0);
-	camcon2_rotate_view(&vv->camcon, (float)t1);
+	com_6e5d_camcon2_rotate_view(&vv->camcon, (float)t1);
 }
 
 static void vwdview_view_zoom(Vwdview* vv, WlezwrapEvent *e) {
